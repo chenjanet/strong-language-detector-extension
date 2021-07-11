@@ -1,0 +1,13 @@
+{
+    "name": "Strong Language Detector",
+    "version": "1.0",
+    "description": "Censors strong language on webpages",
+    "permissions": [ ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}
