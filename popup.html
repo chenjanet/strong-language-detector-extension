@@ -5,7 +5,7 @@
     </head>
     <body>
         When a swear word is encountered, this extension should censor...
-        <div id="censorLevelSelector">
+        <form name="censorLevelSelector">
             <div>
                 <input type="radio" id="word" name="censorLevel" value="word" />
                 <label for="word">Only the word</label>
@@ -18,7 +18,7 @@
                 <input type="radio" id="page" name="censorLevel" value="page" />
                 <label for="word">The entire page</label>
             </div>
-        </div>
+        </form>
         <script src="popup.js"></script>
     </body>
 </html>
