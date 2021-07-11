@@ -1,0 +1,28 @@
+body {
+    display: block;
+    overflow: auto;
+    min-width: 350px;
+    min-height: 100px;
+}
+
+.sectionLabel {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+#extensionSettings {
+    margin-top: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #343B3F;
+}
