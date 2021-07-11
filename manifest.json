@@ -2,7 +2,7 @@
     "name": "Strong Language Detector",
     "version": "1.0",
     "description": "Censors strong language on webpages",
-    "permissions": [ ],
+    "permissions": [ "storage", "activeTab"],
     "background": {
         "service_worker": "background.js"
     },

@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="popup_styles.css" />
     </head>
     <body>
-        <p>Hello World!</p>
+        When a swear word is encountered, this extension should censor...
+        <div id="censorLevelSelector">
+            <div>
+                <input type="radio" id="word" name="censorLevel" value="word" />
+                <label for="word">Only the word</label>
+            </div>
+            <div>
+                <input type="radio" id="sentence" name="censorLevel" value="sentence" />
+                <label for="word">The entire sentence</label>
+            </div>
+            <div>
+                <input type="radio" id="page" name="censorLevel" value="page" />
+                <label for="word">The entire page</label>
+            </div>
+        </div>
+        <script src="popup.js"></script>
     </body>
 </html>
