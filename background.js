@@ -6,27 +6,40 @@ chrome.runtime.onInstalled.addListener(function() {
     }
   );
   console.log("Successfully installed");
-});
-
-chrome.tabs.query({ active: true }, function(tab) {
-  getStrongLanguage(tab.url);
+  chrome.tabs.query({ active: true }, function(tab) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab[0].id },
+      function: getStrongLanguage
+    });
+  });
+  chrome.permissions.getAll(function(perms) {
+    console.log(perms);
+  })
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
   chrome.tabs.query({ active: true }, function(tab) {
-    getStrongLanguage(tab[0].url);
+    chrome.scripting.executeScript({
+      target: { tabId: tab[0].id },
+      function: getStrongLanguage
+    });
   });
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  getStrongLanguage(tab.url);
+  chrome.scripting.executeScript({
+    target: { tabId },
+    function: getStrongLanguage
+  });
 });
 
-chrome.tabs.onCreated.addListener(function(tab) { 
-  console.log(document);
-  getStrongLanguage(tab.url);
+chrome.tabs.onCreated.addListener(function(tab) {
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: getStrongLanguage
+  });
 });
 
-function getStrongLanguage(url) {
-  console.log(url);
+function getStrongLanguage() {
+  
 }
