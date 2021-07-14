@@ -1,10 +1,10 @@
 let censorLevelSelect =  document.forms["censorLevelSelector"];
 
-chrome.storage.sync.get('censorLevel', function(data) {
+chrome.storage.sync.get('censorLevel', (data) => {
     censorLevelSelect[data.censorLevel].checked = true;
 });
 
-censorLevelSelect.onchange = function(event) {
+censorLevelSelect.onchange = (event) => {
     chrome.storage.sync.set({censorLevel: event.target.value});
     chrome.tabs.reload();
 }

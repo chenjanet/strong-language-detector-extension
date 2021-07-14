@@ -1,12 +1,12 @@
 let extensionStats = document.getElementById("extensionStats");
 
-chrome.storage.sync.get(function(data) {
+chrome.storage.sync.get((data) => {
     const censoredPages = data.censoredPages;
     if (censoredPages.length == 0) {
         extensionStats.innerHTML = "No webpages with strong language have been visited";
         return;
     }
-    censoredPages.sort(function(a, b) {
+    censoredPages.sort((a, b) => {
         return a.visitCount - b.visitCount;
     });
     let extensionStatsSummary = `<b>${censoredPages.length}</b> webpage(s) visited have had strong language.<br>`;
