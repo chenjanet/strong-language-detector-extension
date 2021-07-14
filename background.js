@@ -5,41 +5,27 @@ chrome.runtime.onInstalled.addListener(function() {
       censoredPages: [ ],
     }
   );
-  console.log("Successfully installed");
-  chrome.tabs.query({ active: true }, function(tab) {
-    chrome.scripting.executeScript({
-      target: { tabId: tab[0].id },
-      function: getStrongLanguage
-    });
+  chrome.tabs.query({ active: true }, function(tabs) {
+    if (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { "message": "activated_tab", "url": tabs[0].url });
+    }
   });
-  chrome.permissions.getAll(function(perms) {
-    console.log(perms);
-  })
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
-  chrome.tabs.query({ active: true }, function(tab) {
-    chrome.scripting.executeScript({
-      target: { tabId: tab[0].id },
-      function: getStrongLanguage
-    });
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    if (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, { "message": "activated_tab", "url": tabs[0].url });
+    }
   });
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  chrome.scripting.executeScript({
-    target: { tabId },
-    function: getStrongLanguage
-  });
+  if (changeInfo.status === "complete") {
+    chrome.tabs.sendMessage(tabId, { "message": "updated_tab", "url": tab.url });
+  }
 });
 
 chrome.tabs.onCreated.addListener(function(tab) {
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    function: getStrongLanguage
-  });
+  chrome.tabs.sendMessage(tab.id, { "message": "created_tab", "url": tab.url });
 });
-
-function getStrongLanguage() {
-  
-}
