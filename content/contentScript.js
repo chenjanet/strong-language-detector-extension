@@ -6,7 +6,7 @@ const getBaseUrl = (url) => {
     if (url.includes("/search?q=")) {
         return url.split(/&/g)[0];
     } else {
-        const pathArr = request.url.split('/');
+        const pathArr = url.split('/');
         return pathArr[0] + "//" + pathArr[2];
     }
 }
@@ -39,18 +39,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     chrome.runtime.sendMessage({ message: 'close_tab' });
                 }
                 chrome.storage.sync.get('censoredPages', (censorData) => {
-                    for (let page of censorData) {
+                    for (let page of censorData.censoredPages) {
                         if (request.url.includes(page.url)) {
                             page.visitCount++;
-                            return chrome.storage.sync.set({ censoredPages: censorData });
+                            return chrome.storage.sync.set({ censoredPages: censorData.censoredPages });
                         }
                     }
                     let url = getBaseUrl(request.url);
-                    censorData.push({
+                    censorData.censoredPages.push({
                         url,
                         visitCount: 1
                     });
-                    chrome.storage.sync.set({ censoredPages: censorData });
+                    chrome.storage.sync.set({ censoredPages: censorData.censoredPages });
                 });
             }
         });
