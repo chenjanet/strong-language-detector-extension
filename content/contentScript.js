@@ -1,9 +1,6 @@
-const sentenceReg = new RegExp("[^\.!\?\n]+[\.!\?\n]+", "g");
 const wordReg = new RegExp("[A-Za-z0-9_]+", "g");
 
 const wordsList = () => { return Array.from(new Set(document.body.innerText.match(wordReg))); }
-
-const sentencesList = () => { return Array.from(new Set(document.body.innerText.match(sentenceReg))); }
 
 const pageText = () => { return [ document.body.innerText ] };
 
@@ -12,8 +9,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         let texts;
         if (data.censorLevel == "word") {
             texts = wordsList();
-        } else if (data.censorLevel == "sentence") {
-            texts = sentencesList();
         } else {
             texts = pageText();
         }
