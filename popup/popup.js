@@ -12,9 +12,9 @@ chrome.storage.sync.get((data) => {
     let extensionStatsSummary = `<b>${censoredPages.length}</b> webpage(s) visited have had strong language.<br>`;
     extensionStatsSummary = `${extensionStatsSummary}Most frequently-visited webpages with strong language:`;
     extensionStatsSummary = `${extensionStatsSummary}<ul>`;
-    extensionStatsSummary = `${extensionStatsSummary}<li>${censoredPages[0].url}: visited ${censoredPages[0].visitCount} times`;
-    if (censoredPages[1]) extensionStatsSummary = `${extensionStatsSummary}<li>${censoredPages[1].url}: visited ${censoredPages[1].visitCount} times`;
-    if (censoredPages[2]) extensionStatsSummary = `${extensionStatsSummary}<li>${censoredPages[2].url}: visited ${censoredPages[2].visitCount} times`;
+    extensionStatsSummary = `${extensionStatsSummary}<li>${censoredPages[0].url}: visited <b>${censoredPages[0].visitCount}</b> time(s)`;
+    if (censoredPages[1]) extensionStatsSummary = `${extensionStatsSummary}<li>${censoredPages[1].url}: visited <b>${censoredPages[1].visitCount}</b> time(s)`;
+    if (censoredPages[2]) extensionStatsSummary = `${extensionStatsSummary}<li>${censoredPages[2].url}: visited <b>${censoredPages[2].visitCount}</b> time(s)`;
     extensionStatsSummary = `${extensionStatsSummary}</ul>`;
     document.getElementById("extensionStats").innerHTML = extensionStatsSummary;
 });
