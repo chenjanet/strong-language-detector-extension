@@ -37,6 +37,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 .then(data => {
                     sendResponse({ data });
                 });
+            break;
+        }
+        case 'close_tab': {
+            chrome.tabs.goBack();
+            break;
         }
     }
     return true;
