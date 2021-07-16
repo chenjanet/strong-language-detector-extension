@@ -19,7 +19,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         }
         chrome.runtime.sendMessage({ message: 'get_strong_language', data: { "text": Array.from(texts) } }, (response) => {
             texts = texts.filter((word, index) => { return response.data.is_strong[index] === 1 });
-            console.log(texts);
+            const elements = document.getElementsByTagName("*");
+            for (let element of elements) {
+                for (let node of element.childNodes) {
+                    if (node.nodeType === 3) {
+                        const text = node.nodeValue;
+                        let replacedText = text;
+                        texts.forEach(text => {
+                            const replacement = text.replace(/./g, "*");
+                            const textReg = new RegExp(text, "g");
+                            replacedText = replacedText.replace(textReg, replacement);
+                        });
+                        if (replacedText !== text) {
+                            element.replaceChild(document.createTextNode(replacedText), node);
+                        }
+                    }
+                }
+                
+            }
         });
     }); 
     
