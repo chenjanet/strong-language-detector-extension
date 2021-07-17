@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         }
                     }
                 } else {
-                    alert('This page contains strong language. You will be redirected back to the previous page');
+                    alert('This page contains strong language. It will now be closed');
                     chrome.runtime.sendMessage({ message: 'close_tab' });
                 }
                 chrome.storage.sync.get('censoredPages', (censorData) => {

@@ -40,7 +40,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         }
         case 'close_tab': {
-            chrome.tabs.goBack();
+            chrome.tabs.remove([sender.tab.id]);
             break;
         }
     }
