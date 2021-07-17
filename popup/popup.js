@@ -7,7 +7,7 @@ chrome.storage.sync.get((data) => {
         return;
     }
     censoredPages.sort((a, b) => {
-        return a.visitCount - b.visitCount;
+        return b.visitCount - a.visitCount;
     });
     let extensionStatsSummary = `<b>${censoredPages.length}</b> webpage(s) visited have had strong language.<br>`;
     extensionStatsSummary = `${extensionStatsSummary}Most frequently-visited webpages with strong language:`;
